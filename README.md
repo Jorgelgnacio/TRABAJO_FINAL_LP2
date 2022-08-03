@@ -10,6 +10,8 @@ Se quiere automatizar la comparación de precios de productos básicos de la can
 - Deben crear un repositorio en GitHub que registre el trabajo colaborativo. Es importante no solo colgar el .ipynb sino documentación extra que muestre el planeamiento del desarrollo del proyecto, o cualquier otro que permita evidenciar el detalle del desarrollo del trabajo.
 - La url de su respositorio GitHub de trabajo deben ser compartida en el aula virtual en la tarea correspondiente.
 
+# Importar librerías
+
 ```{python}
 import pandas as pd
 import time
@@ -28,4 +30,48 @@ from selenium import webdriver
 import time
 #jupyter notebook --NotebookApp.iopub_data_rate_limit=1.0e10
 ```
+
+# Documentación de la nueva actualización de Selenium
+
+```{python}
+ID = "id"
+NAME = "name"
+XPATH = "xpath"
+LINK_TEXT = "link text"
+PARTIAL_LINK_TEXT = "partial link text"
+TAG_NAME = "tag name"
+CLASS_NAME = "class name"
+CSS_SELECTOR = "css selector"
+
+# find_element(By.ID, "id")
+# find_element(By.NAME, "name")
+# find_element(By.XPATH, "xpath")
+# find_element(By.LINK_TEXT, "link text")
+# find_element(By.PARTIAL_LINK_TEXT, "partial link text")
+# find_element(By.TAG_NAME, "tag name")
+# find_element(By.CLASS_NAME, "class name")
+# find_element(By.CSS_SELECTOR, "css selector")
+```
+
+# Programa para obtener los productos y precios de supermercados Metro (Usuario Jorge)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
