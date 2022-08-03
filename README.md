@@ -92,12 +92,65 @@ driver.find_element(By.XPATH, '/html/body/header[1]/div/div[2]/div[2]/div[1]/div
 time.sleep(1)
 ```
 
+```{python}
+# Cantidad de productos
+page=driver.find_element(By.XPATH, '/html/body/div[27]/div/div[2]/div[1]/div[1]/span[2]').text
+int(page[:3])
+```
 
+```{python}
+# Automatización de scrolls (se correra las veces que sea necesario)
+tiempo = 15 + 1           # Seran 15 scrolls automaticos
+while True:               # Mientras esto sea verdad se realizará lo siguiente:
+    tiempo -= 1           # Cuenta regresiva, se resta 1 cada ciclo
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)") # Cada segundo se desplazará hasta la parte inferior de la página 
+    time.sleep(1)      # Cada scroll automático tendra un timelap de 1 segundo
+    if scrolls < 0:     # Cuando llegue a cero segundos:
+        time.sleep(3)   # Le damos 3 segundos a que la pagina carge los contenidos hasta el ultimo scroll automatico
+        driver.execute_script("window.scrollBy(0,-310)") # Un scroll up (rueda hacia arriba) para mostrar la ultima fila de productos
+        elements = driver.find_elements(By.XPATH,'//li[@layout="19ccd66b-b568-43cb-a106-b52f9796f5cd"]') # Encontrar los productos de la pagina de acuerdo al XPATH
+        break           # Se cierra el ciclo
 
+        
+print(colored('Productos extraidos:','red'))  
+print(len(elements))        # Longitud de los elementos (productos) encontrados hasta coindicir con el total de productos
 
+print(colored('\n Se llegó a extraer todos los productos?.','yellow'))  
+print(len(elements) == int(page[:3])) # Comparación 
+```
 
+```{python}
+# Vista a todos los elementos a scrapear, desde el primero hasta el ultimo en ser extradio
+n = 1
+while n < len(elements):  # Ciclo de acuerdo  a la cantidad de elementos extraidos
+    listing = driver.find_element(By.XPATH, f'/html/body/div[27]/div/div[2]/div[4]/div[2]/div[2]/div[2]/div/ul/li[{n}]') 
+    driver.execute_script("arguments[0].scrollIntoView(true);", listing)  # Se ira a la parte inferior hasta la ultima fila de productos
+    n += 1
+```
 
+```{python}
+# Almacenar productos y precios 
+productos =  []  # lista vacia
+precios = []  # lista vacia
+for element in tqdm(elements):  # tqdm:Contar iteraciones, indicar el tiempo que tarda por iteración y el tiempo total transcurrido.  
+        name = element.find_element(By.XPATH,'.//a[@class="product-item__name"]').text  # Buscar producto en base al XPATH y mostrar el texto
+        price = element.find_element(By.XPATH,'.//span[@class="product-prices__value product-prices__value--best-price"]').text # Buscar precio en base al XPATH y mostrar el texto
+        productos.append(name)    # Agregar a la lista productos
+        precios.append(price)  # Agregar a la lista precios
+```
 
+```{python}
+#Exportacion de productos y precios a un archivo excel 
+dic= {'Producto': productos , "Precio": precios}  # Crear diccionario con los values productos y precios (listas)
+df = pd.DataFrame(dic , columns= ["Producto", "Precio"] ) # Convertir a dataframe con columnas de etiquetas Producto y Precio
+df.to_excel('metro.xlsx', index=False,encoding='cp1252')  # Exportar a excel, sin indices, y el encoding cp1252
+
+# Lectura y muestra de resultados
+print(colored('Imprimiendo resultados.','blue'))  
+pd.read_excel('metro.xlsx')
+```
+
+# Programa para obtener los productos y precios de supermercados Tottus  (Usuario Christian)
 
 
 
