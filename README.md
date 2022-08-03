@@ -56,15 +56,41 @@ CSS_SELECTOR = "css selector"
 # Programa para obtener los productos y precios de supermercados Metro (Usuario Jorge)
 
 
+```{python}
+path = ('C:/Users/jorge/Documents/TRABAJO FINAL/chromedriver.exe')  # Dirección del ejecutable chromedriver.exe
+urls='https://www.metro.pe'          # URL de la pagina de Metro                   
+options = webdriver.ChromeOptions()   
+options.add_argument('--incognito')  # Opcion de abrir ventana de Chrome en modo incognito
+s = Service(path)                       
+driver = webdriver.Chrome(service=s, options = options)
+driver.maximize_window()
+driver.get(urls)
 
+time.sleep(3) # lapso de 3 segundo para que la pagina cargue los contenidos
+```
+```{python}
+# Hacer clic en "cerrar", pagina emergente que sale en inicio
+driver.find_e```{python}lement(By.XPATH, '/html/body/div[46]/div/div[3]/button[1]').click()
+time.sleep(1)
+```
 
+```{python}
+# Hacer clic en la barra de búsqueda
+driver.find_element(By.XPATH, '/html/body/header[1]/div/div[2]/div[2]/div[1]/div[1]/input').click()
+time.sleep(1)
+```
 
+```{python}
+# Ingresar el producto en la barra de busqueda
+driver.find_element(By.XPATH, '/html/body/header[1]/div/div[2]/div[2]/div[1]/div[1]/input').send_keys('leche')
+time.sleep(1)
+```
 
-
-
-
-
-
+```{python}
+# Dar clic en ver todos los resultados.
+driver.find_element(By.XPATH, '/html/body/header[1]/div/div[2]/div[2]/div[1]/div[2]/div[2]/a/span').click()
+time.sleep(1)
+```
 
 
 
