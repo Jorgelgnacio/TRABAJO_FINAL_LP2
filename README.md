@@ -10,6 +10,7 @@ Se quiere automatizar la comparación de precios de productos básicos de la can
 - Deben crear un repositorio en GitHub que registre el trabajo colaborativo. Es importante no solo colgar el .ipynb sino documentación extra que muestre el planeamiento del desarrollo del proyecto, o cualquier otro que permita evidenciar el detalle del desarrollo del trabajo.
 - La url de su respositorio GitHub de trabajo deben ser compartida en el aula virtual en la tarea correspondiente.
 
+```{python}
 import pandas as pd
 import time
 from selenium import webdriver
@@ -26,3 +27,5 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
 #jupyter notebook --NotebookApp.iopub_data_rate_limit=1.0e10
+```
+
