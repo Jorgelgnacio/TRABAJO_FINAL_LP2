@@ -1,5 +1,9 @@
 # TRABAJO FINAL LP2
 
+- Tanta Medina, Christian Rodolfo 20200338
+- Taquiri Pillaca, Jorge Ignacio 20200339
+- Tay Saccaco, Brian Eduardo 
+
 Comparación Automatizada de precios de productos de primera necesidad en los 3 Supermercados más populares: Metro, Plaza Vea, Tottus.
 
 ## I. DESCRIPCIÓN DEL CASO
